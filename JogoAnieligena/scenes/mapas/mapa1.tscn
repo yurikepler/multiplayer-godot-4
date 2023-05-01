@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8m0vc34vnjv7"]
+
+[ext_resource type="Script" path="res://scripts/mapa1.gd" id="1_u7k7i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_087ew"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7fu0t"]
+sky_material = SubResource("ProceduralSkyMaterial_087ew")
+
+[sub_resource type="Environment" id="Environment_pys3l"]
+background_mode = 2
+sky = SubResource("Sky_7fu0t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_rwfe7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2b4y5"]
+size = Vector3(88.1716, 0.143293, 60.5554)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hmev"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqwdn"]
+
+[node name="mapa1" type="Node3D"]
+script = ExtResource("1_u7k7i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 2.19288, -1.35074)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pys3l")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(88.4995, 0, 0, 0, 0.178331, 0, 0, 0, 61.043, 0, 0, 0)
+mesh = SubResource("BoxMesh_rwfe7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2b4y5")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.67602)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_1hmev")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_rqwdn")

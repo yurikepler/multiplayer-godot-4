@@ -1,0 +1,149 @@
+[gd_scene load_steps=4 format=3 uid="uid://jywqu5xay504"]
+
+[ext_resource type="Script" path="res://scripts/TestingNetworkUI.gd" id="1_gsltb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb67s"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irkx6"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="TestingNetworkUI" type="CanvasLayer"]
+script = ExtResource("1_gsltb")
+
+[node name="MainMenu" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_top = 223.0
+offset_right = -335.0
+offset_bottom = -223.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Type Your Name"
+alignment = 1
+
+[node name="HostButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="ClientButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CLIENT"
+
+[node name="IpAdress" type="LineEdit" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "127.0.0.1"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="ServerIp" type="Label" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Give this IP to your friends: "
+
+[node name="MainMenu2" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_top = 1.0
+offset_right = -335.0
+offset_bottom = -445.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu2"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PlayerList" type="ItemList" parent="MainMenu2/MarginContainer"]
+layout_mode = 2
+
+[node name="StartGame" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 412.0
+offset_top = 514.0
+offset_right = -412.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="StartGame"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="StartGame" type="Button" parent="StartGame/MarginContainer"]
+layout_mode = 2
+text = "START GAME"
+
+[node name="ErrorPanel" type="Panel" parent="."]
+visible = false
+offset_left = 367.0
+offset_top = 73.0
+offset_right = 783.0
+offset_bottom = 229.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nb67s")
+
+[node name="ErrorLabel" type="Label" parent="ErrorPanel"]
+layout_mode = 2
+offset_left = 116.0
+offset_top = 14.0
+offset_right = 298.0
+offset_bottom = 66.0
+size_flags_vertical = 1
+text = "Conection failed
+Please Try Again"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ErrorButton" type="Button" parent="ErrorPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -49.0
+offset_right = 66.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_irkx6")
+text = "Confirm"
+
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="StartGame/MarginContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="ErrorPanel/ErrorButton" to="." method="_on_error_button_pressed"]
